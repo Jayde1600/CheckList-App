@@ -1,5 +1,7 @@
 package com.example.checklist_app.Adapter;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +37,28 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
        firestore = FirebaseFirestore.getInstance();
 
        return new MyViewHolder(view);
+    }
+
+    public void deleteTask(int position) {
+
+        ToDoModel toDoModel = todoList.get(position);
+        firestore.collection("task").document(toDoModel.TaskID).delete();
+        todoList.remove(position);
+        notifyItemRemoved(position);
+
+    }
+
+    public Context getContext() {
+        return activity;
+    }
+
+    public void editTask(int position) {
+        ToDoModel toDoModel = todoList.get(position);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("task", toDoModel.getTask());
+        bundle.putString("due", toDoModel.getDue());
+        bundle.putString("id", toDoModel.TaskID);
     }
 
     @Override
