@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements OnCloseDialogList
         mList = new ArrayList<>();
         adapter = new ToDoAdapter(MainActivity.this, mList);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new InteractHelper (adapter));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new InteractHelper(adapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
         showData();

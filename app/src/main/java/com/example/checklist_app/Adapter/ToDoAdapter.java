@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.checklist_app.AddNewTask;
 import com.example.checklist_app.MainActivity;
 import com.example.checklist_app.Model.ToDoModel;
 import com.example.checklist_app.R;
@@ -59,6 +60,10 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         bundle.putString("task", toDoModel.getTask());
         bundle.putString("due", toDoModel.getDue());
         bundle.putString("id", toDoModel.TaskID);
+
+        AddNewTask addNewTask = new AddNewTask();
+        addNewTask.setArguments(bundle);
+        addNewTask.show(activity.getSupportFragmentManager(), addNewTask.getTag());
     }
 
     @Override
